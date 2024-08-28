@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include <iostream>
+#include <cstdio>
 #include "define.h"
 
 using namespace std;
@@ -88,26 +89,91 @@ VOID analysisSegmentDescriptor(DWORD64 descriptor) {
 	
 }
 
+// x86 compile
+WORD getCS() {
+	WORD rCS = 0;
+	_asm {
+		mov ax, cs;
+		mov rCS, ax;
+	}
+	return rCS;
+}
+
+WORD getDS() {
+	WORD rDS = 0;
+	_asm {
+		mov ax, ds;
+		mov rDS, ax;
+	}
+	return rDS;
+}
+
+WORD getSS() {
+	WORD rSS = 0;
+	_asm {
+		mov ax, ss;
+		mov rSS, ax;
+	}
+	return rSS;
+}
+
+WORD getFS() {
+	WORD rFS = 0;
+	_asm {
+		mov ax, fs;
+		mov rFS, ax;
+	}
+	return rFS;
+}
+
+WORD getGS() {
+	WORD rGS = 0;
+	_asm {
+		mov ax, gs;
+		mov rGS, ax;
+	}
+	return rGS;
+}
+
+WORD getES() {
+	WORD rES = 0;
+	_asm {
+		mov ax, es;
+		mov rES, ax;
+	}
+	return rES;
+}
+
+
 int main() {
-	//// 0x0023
-	//// 0000 0000 0010 0011
-	//WORD selector = 0x0023;
-	//analysisSegmentSelector(selector);
-	//
-	//DWORD64 descriptor = 0x00cff3000000ffff;
-	//analysisSegmentDescriptor(descriptor);
+	int aa = 0;
 
-	//cout << "-------------------------------------------------" << endl;
+	printf("CS: %04X\n", getCS());
+	analysisSegmentSelector(getCS());
 
-	//// 0x001B 
-	//// 0000 0000 0001 1011
-	//selector = 0x001B;
-	//analysisSegmentSelector(selector);
+	printf("DS: %04X\n", getDS());
+	analysisSegmentSelector(getDS());
 
-	//descriptor = 0x00cffb000000ffff;
-	//analysisSegmentDescriptor(descriptor);
-	analysisSegmentSelector(0x4b);
-	DWORD64 descriptor = 0x008ff6000000ffff;
+	printf("SS: %04X\n", getSS());
+	analysisSegmentSelector(getSS());
+
+	printf("ES: %04X\n", getES());
+	analysisSegmentSelector(getES());
+
+	printf("GS: %04X\n", getGS());
+	analysisSegmentSelector(getGS());
+
+	printf("FS: %04X\n", getFS());
+	analysisSegmentSelector(getFS());
+
+	cout << "----------------------------------------" << endl;
+
+	DWORD64 descriptor = 0x00cffb000000ffff;
+	printf("Segment Descriptor: %0I64X\n", descriptor);
+	analysisSegmentDescriptor(descriptor);
+	
+	descriptor = 0x008ff6000000ffff;
+	printf("Segment Descriptor: %0I64X\n", descriptor);
 	analysisSegmentDescriptor(descriptor);
 
 
