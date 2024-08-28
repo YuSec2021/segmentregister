@@ -2,8 +2,8 @@
 
 <p align="center">
     <a href="https://shields.io/community#language" alt="Backers on Open Collective">
-        <img src="https://img.shields.io/badge/language-c++-brightgreen" /></a>
-    <a href="https://github.com/yusec2021/segmentregister/pulse" alt="Activity">
+        <img src="https://img.shields.io/badge/language-c++-orange" /></a>
+    <a href="https://github.com/yusec2021/segmentregister/pulse" alt="Commit">
         <img src="https://img.shields.io/github/commit-activity/m/yusec2021/segmentregister" /></a>
 </p>
 
